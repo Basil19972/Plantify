@@ -68,14 +68,7 @@ function TableBO() {
 
   return (
     <>
-      <Card
-        w={"307px"}
-        withBorder
-        bg={"#222222"}
-        p={20}
-        c={"white"}
-        radius={20}
-      >
+      <Card withBorder bg={"#222222"} p={20} c={"white"} radius={20}>
         <Group position="apart">
           <img src="images/logo.svg"></img>
 
