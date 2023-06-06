@@ -29,7 +29,7 @@ function TableBO({ plants }: { plants: PlantValues[] }) {
         <td>{plant.watered ? <img src="images/droplet.svg"></img> : ""}</td>
         <td>{plant.fertilized ? <img src="images/bolt.svg"></img> : ""}</td>
 
-        <td>{moment(plant.date).format("MMM Do YY")}</td>
+        <td>{moment(plant.$createdAt).format("MMM Do YY")}</td>
 
         <td style={{ maxWidth: 70 }}>{plant.message}</td>
       </tr>
