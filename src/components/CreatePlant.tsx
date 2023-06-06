@@ -58,6 +58,16 @@ function CreatePlant({
 
   const openConfirmModa = () =>
     openConfirmModal({
+      styles: {
+        modal: {
+          backgroundColor: "#222222",
+          borderRadius: "10px",
+          border: "solid",
+          borderColor: "white",
+          borderWidth: "2px",
+          color: "white",
+        },
+      },
       title: "Please confirm your action",
       children: (
         <Text size="sm">Are you sure you want to save this watering?</Text>

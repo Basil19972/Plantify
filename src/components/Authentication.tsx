@@ -48,7 +48,20 @@ function AuthenticationForm() {
         onSubmit={form.onSubmit(() => {
           if (type === "register") {
             openConfirmModal({
+              styles: {
+                modal: {
+                  backgroundColor: "#222222",
+                  borderRadius: "10px",
+                  border: "solid",
+                  borderColor: "white",
+                  borderWidth: "2px",
+                  color: "white",
+                },
+              },
+              transition: "fade",
+              transitionDuration: 600,
               title: "Please check your details",
+
               children: (
                 <Text size="sm">
                   Would you like to create your account with {form.values.email}
@@ -65,16 +78,20 @@ function AuthenticationForm() {
                     password: form.values.password,
                   })
                   .then((response) => {
-                    if (response.status) {
-                      userService
-                        .loginUser({
-                          email: form.values.email,
-                          password: form.values.password,
-                        })
-                        .then(() => {
-                          window.location.reload();
-                        });
-                    }
+                    userService
+                      .loginUser({
+                        email: form.values.email,
+                        password: form.values.password,
+                      })
+                      .then(() => {
+                        window.location.reload();
+                      });
+                  })
+                  .catch((error) => {
+                    feedBackModals.ErrorModal({
+                      title: "Error",
+                      message: error.message,
+                    });
                   });
               },
             });
@@ -94,7 +111,7 @@ function AuthenticationForm() {
               .catch((error) => {
                 feedBackModals.ErrorModal({
                   title: "Error",
-                  message: "Wrong Passwort or Email",
+                  message: error.message,
                 });
               });
           }

@@ -19,6 +19,16 @@ function TableBO() {
 
   const openConfirmDelete = (id: string) =>
     openConfirmModal({
+      styles: {
+        modal: {
+          backgroundColor: "#222222",
+          borderRadius: "10px",
+          border: "solid",
+          borderColor: "white",
+          borderWidth: "2px",
+          color: "white",
+        },
+      },
       title: "Please confirm your action",
       children: (
         <Text size="sm">Are you sure you want to delete this watering?</Text>

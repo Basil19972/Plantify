@@ -1,11 +1,36 @@
+
+/* Stile für Desktops und größere Bildschirme */
 #root {
-  max-width: 1280px;
+  min-width: 30vw;
   margin: 0 auto;
-  padding: 2rem;
+  padding: 1rem;
   text-align: center;
   color: white;
 }
 
+/* Stile für Tablets und kleinere Bildschirme */
+@media (max-width: 1024px) {
+  #root {
+    /* Tablet-spezifische Stile hier */
+      min-width: 70%;
+      margin: 0 auto;
+        padding: 1rem;
+        text-align: center;
+        color: white;
+  }
+}
+
+/* Stile für Smartphones und kleinere Bildschirme */
+@media (max-width: 600px) {
+  #root {
+    /* Smartphone-spezifische Stile hier */
+      min-width: 90%;
+      margin: 0 auto;
+        padding: 1rem;
+        text-align: center;
+        color: white;
+  }
+}
 .logo {
   height: 6em;
   padding: 1.5em;

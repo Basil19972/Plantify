@@ -7,6 +7,16 @@ import { openModal } from "@mantine/modals";
 function TableBO({ plants }: { plants: PlantValues[] }) {
   const openExplanationModal = () =>
     openModal({
+      styles: {
+        modal: {
+          backgroundColor: "#222222",
+          borderRadius: "10px",
+          border: "solid",
+          borderColor: "white",
+          borderWidth: "2px",
+          color: "white",
+        },
+      },
       title: "Information",
       children: (
         <>
