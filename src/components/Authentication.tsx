@@ -36,7 +36,7 @@ function AuthenticationForm() {
 
   return (
     <Paper withBorder bg={"#222222"} c={"white"} radius={20} p="xl">
-      <img src="images/plant.svg"></img>
+      <img src="images/logo.svg"></img>
 
       <Text size="lg" weight={500}>
         Plantify, {type} with:
