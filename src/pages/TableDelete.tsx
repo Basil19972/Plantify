@@ -67,7 +67,7 @@ function TableBO() {
         radius={20}
       >
         <Group position="apart">
-          <img src="images/plant.svg"></img>
+          <img src="images/logo.svg"></img>
 
           <Burger
             color="white"

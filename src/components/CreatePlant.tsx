@@ -98,7 +98,7 @@ function CreatePlant({
     <>
       <Card withBorder bg={"#222222"} p={20} c={"white"} radius={20}>
         <Group position="apart">
-          <img src="images/plant.svg"></img>
+          <img src="images/logo.svg"></img>
 
           <Burger
             color="white"
