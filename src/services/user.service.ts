@@ -3,8 +3,6 @@ import { ID } from "appwrite";
 import { LoginUserValues, RegisterUserValues, UserPreferences, UserValues } from "../types/User.type";
 
 
- 
-
     async function getCurrentUser() {
     const promise = account.get<UserPreferences>();
     return await promise;
@@ -21,7 +19,6 @@ import { LoginUserValues, RegisterUserValues, UserPreferences, UserValues } from
   }
   
 
-
   async function loginUser(userProps: LoginUserValues) {
   const promise = account.createEmailSession(userProps.email, userProps.password);
   return await promise;
@@ -31,8 +28,6 @@ import { LoginUserValues, RegisterUserValues, UserPreferences, UserValues } from
   const promise = account.deleteSession( 'current' );  
   return await promise;
   }
-
-
 
 
 const userService = {

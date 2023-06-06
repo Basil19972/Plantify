@@ -41,7 +41,7 @@ function TableBO() {
     .reverse()
     .map((plant) => (
       <tr style={{ wordWrap: "break-word" }}>
-        <td>{moment(plant.date).format("MMM Do YY")}</td>
+        <td>{moment(plant.$createdAt).format("MMM Do YY")}</td>
 
         <td style={{ maxWidth: 60 }}>{plant.message}</td>
         <td>
