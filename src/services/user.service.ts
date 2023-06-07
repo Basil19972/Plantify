@@ -29,13 +29,43 @@ import { LoginUserValues, RegisterUserValues, UserPreferences, UserValues } from
   return await promise;
   }
 
+  async function startEmailVerification() {
+const url = `${window.location.origin}/verifySuccess`
+  const promise = account.createVerification( url );  
+  return await promise;
+  }
+
+  async function completeEmailVerification(userId: string, secret: string) {
+    await account.updateVerification(userId, secret);
+  }
+  async function changePassword(password: string, oldPassword: string) {
+    await account.updatePassword(password, oldPassword);
+  }
+
+    async function forgotPassword(email: string) {
+    const url = `${window.location.origin}/resetPassword`
+    await account.createRecovery(email, url);
+  }
+
+      async function completePasswordRecovery(userId :string, secret: string, pass: string, confirmPass:string) {
+    await account.updateRecovery(userId, secret, pass, confirmPass);
+  }
+
+
+
 
 const userService = {
   getCurrentUser,
   updateEmailNotification,
   createUser,
   loginUser,
-  logoutUser
+  logoutUser,
+  startEmailVerification,
+  completeEmailVerification,
+  changePassword,
+  forgotPassword,
+  completePasswordRecovery
+  
 };
 
 export default userService;

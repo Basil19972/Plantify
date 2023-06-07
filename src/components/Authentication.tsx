@@ -13,8 +13,11 @@ import {
 import feedBackModals from "../components/modals/FeedBackModals";
 import { openConfirmModal } from "@mantine/modals";
 import userService from "../services/user.service";
+import { useNavigate } from "react-router-dom";
 
 function AuthenticationForm() {
+  const navigate = useNavigate();
+
   const [type, toggle] = useToggle(["login", "register"]);
   const form = useForm({
     initialValues: {
@@ -26,8 +29,8 @@ function AuthenticationForm() {
     validate: {
       email: (val) => (/^\S+@\S+$/.test(val) ? null : "Invalid email"),
       password: (val) =>
-        val.length <= 6
-          ? "Password should include at least 6 characters"
+        val.length <= 8
+          ? "Password should include at least 8 characters"
           : null,
       username: (val) =>
         val.length > 12 ? "Username should incloud max 12 characters" : null,
@@ -84,7 +87,9 @@ function AuthenticationForm() {
                         password: form.values.password,
                       })
                       .then(() => {
-                        window.location.reload();
+                        userService.startEmailVerification().then(() => {
+                          window.location.reload();
+                        });
                       });
                   })
                   .catch((error) => {
@@ -171,6 +176,15 @@ function AuthenticationForm() {
             {type === "register"
               ? "Already have an account? Login"
               : "Don't have an account? Register"}
+          </Anchor>
+          <Anchor
+            component="button"
+            type="button"
+            color="dimmed"
+            onClick={() => navigate("/forgetpassword")}
+            size="xs"
+          >
+            Forgot password?
           </Anchor>
           <Button type="submit">{upperFirst(type)}</Button>
         </Group>
