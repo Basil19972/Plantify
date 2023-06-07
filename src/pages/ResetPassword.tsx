@@ -28,7 +28,7 @@ import { useNavigate } from "react-router-dom";
 import userService from "../services/user.service";
 import feedBackModals from "../components/modals/FeedBackModals";
 
-function resetPassword() {
+function ResetPassword() {
   const navigate = useNavigate();
 
   const [newPassword, setNewPassword] = useState<string>("");
@@ -126,4 +126,4 @@ function resetPassword() {
     </>
   );
 }
-export default resetPassword;
+export default ResetPassword;

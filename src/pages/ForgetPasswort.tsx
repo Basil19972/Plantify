@@ -28,7 +28,7 @@ import { useNavigate } from "react-router-dom";
 import userService from "../services/user.service";
 import feedBackModals from "../components/modals/FeedBackModals";
 
-function forgetPassword() {
+function ForgetPassword() {
   const navigate = useNavigate();
 
   const [email, setEmail] = useState<string>("");
@@ -91,4 +91,4 @@ function forgetPassword() {
     </>
   );
 }
-export default forgetPassword;
+export default ForgetPassword;
