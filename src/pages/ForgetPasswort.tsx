@@ -60,6 +60,13 @@ function ForgetPassword() {
         <Card withBorder bg={"#222222"} p={20} c={"white"} radius={20}>
           <Group position="apart">
             <img src="images/logo.svg"></img>
+            <Burger
+              color="white"
+              opened={true}
+              onClick={() => {
+                navigate("/landingpage");
+              }}
+            ></Burger>
           </Group>
 
           <Container mt={30} mb={20}>
@@ -71,6 +78,7 @@ function ForgetPassword() {
           <Divider mb={20}></Divider>
 
           <TextInput
+            type="email"
             placeholder="Your Email"
             onChange={(e) => setEmail(e.target.value)}
             pr={10}

@@ -1,4 +1,5 @@
 import {
+  Alert,
   Box,
   Burger,
   Button,
@@ -12,13 +13,14 @@ import {
   Text,
   TextInput,
 } from "@mantine/core";
-import { IconDroplet, IconBolt } from "@tabler/icons";
+import { IconDroplet, IconBolt, IconAlertCircle } from "@tabler/icons";
 import { useState } from "react";
 import { openConfirmModal, openModal } from "@mantine/modals";
 import { useNavigate } from "react-router-dom";
 import feedBackModals from "../components/modals/FeedBackModals";
 import plantService from "../services/plant.service";
 import { UserValues } from "../types/User.type";
+import userService from "../services/user.service";
 
 function CreatePlant({
   currentUser,
@@ -54,6 +56,45 @@ function CreatePlant({
 
   const handleChangeFertilized = (event: any) => {
     setfertilized((prevState) => !prevState);
+  };
+
+  const sendVerification = () => {
+    userService
+      .startEmailVerification()
+      .then(() => {
+        feedBackModals.SuccessModal({
+          title: "Success",
+          message: "We have sent you a verification email",
+        });
+      })
+      .catch((err) => {
+        feedBackModals.ErrorModal({
+          title: "Error",
+          message: "Something went wrong",
+        });
+      });
+  };
+
+  const openEmailNotVerifiedAlert = () => {
+    return (
+      <Alert
+        mb={20}
+        variant="outline"
+        icon={<IconAlertCircle size="1rem" />}
+        title="Email not verified"
+        color="red"
+        bg={"#222222"}
+      >
+        <Button
+          onClick={sendVerification}
+          color="green"
+          size="sm"
+          variant="outline"
+        >
+          Send Link
+        </Button>
+      </Alert>
+    );
   };
 
   const openConfirmModa = () =>
@@ -106,6 +147,7 @@ function CreatePlant({
 
   return (
     <>
+      {!currentUser.emailVerification ? openEmailNotVerifiedAlert() : null}
       <Card withBorder bg={"#222222"} p={20} c={"white"} radius={20}>
         <Group position="apart">
           <img src="images/logo.svg"></img>

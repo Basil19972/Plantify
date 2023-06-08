@@ -39,23 +39,6 @@ function Menupage() {
     });
   }, []);
 
-  const sendVerification = () => {
-    userService
-      .startEmailVerification()
-      .then(() => {
-        feedBackModals.SuccessModal({
-          title: "Success",
-          message: "We have sent you a verification email",
-        });
-      })
-      .catch((err) => {
-        feedBackModals.ErrorModal({
-          title: "Error",
-          message: "Something went wrong",
-        });
-      });
-  };
-
   const openConfirmation = () =>
     openConfirmModal({
       title: "Please confirm your action",
@@ -91,25 +74,7 @@ function Menupage() {
           }}
         ></Burger>
       </Group>
-      <Container mt={30}>
-        <Group position="left">
-          {user?.emailVerification ? (
-            <></>
-          ) : (
-            <Box>
-              <Button
-                variant="outline"
-                color="red"
-                size="xs"
-                onClick={sendVerification}
-              >
-                Verify your Account
-              </Button>
-            </Box>
-          )}
-          <Text>{user?.emailVerification}</Text>
-        </Group>
-      </Container>
+      <Container mt={30}></Container>
       <Container mt={30}>
         <Group position="left">
           <IconUser color="white" size={20} />
