@@ -9,8 +9,8 @@ import LandingPage from "./pages/Landingpage";
 import userService from "./services/user.service";
 import VerificationSuccsess from "./pages/VerificationSuccsess";
 import ChangePassword from "./pages/ChangePassword";
-import ForgetPasswort from "./pages/forgetPasswort";
-import ResetPassword from "./pages/resetPassword";
+import ForgetPasswort from "./pages/ForgetPasswort";
+import ResetPassword from "./pages/ResetPassword";
 
 function App() {
   const [loading, setIsloading] = useState(true);
