@@ -162,7 +162,7 @@ function AuthenticationForm() {
             }
             error={
               form.errors.password &&
-              "Password should include at least 6 characters"
+              "Password should include at least 8 characters"
             }
           />
         </Stack>
