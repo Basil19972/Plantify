@@ -29,9 +29,7 @@ function AuthenticationForm() {
     validate: {
       email: (val) => (/^\S+@\S+$/.test(val) ? null : "Invalid email"),
       password: (val) =>
-        val.length <= 8
-          ? "Password should include at least 8 characters"
-          : null,
+        val.length < 8 ? "Password should include at least 8 characters" : null,
       username: (val) =>
         val.length > 12 ? "Username should incloud max 12 characters" : null,
     },
