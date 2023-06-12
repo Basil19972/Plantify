@@ -29,7 +29,7 @@ function AuthenticationForm() {
     validate: {
       email: (val) => (/^\S+@\S+$/.test(val) ? null : "Invalid email"),
       password: (val) =>
-        val.length <= 8
+        val.length <= 9
           ? "Password should include at least 8 characters"
           : null,
       username: (val) =>
