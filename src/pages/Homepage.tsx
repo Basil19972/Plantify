@@ -1,4 +1,4 @@
-import TableBO from "../components/TableBO";
+import TableBO from "../components/WateringTable";
 import { useEffect, useState } from "react";
 import { PlantValues } from "../types/Plant.type";
 import { UserValues } from "../types/User.type";

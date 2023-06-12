@@ -9,7 +9,7 @@ import LandingPage from "./pages/Landingpage";
 import userService from "./services/user.service";
 import VerificationSuccsess from "./pages/VerificationSuccsess";
 import ChangePassword from "./pages/ChangePassword";
-import ForgetPasswort from "./pages/ForgetPasswort";
+import ForgetPasswort from "./pages/ForgetPassword";
 import ResetPassword from "./pages/ResetPassword";
 
 function App() {
