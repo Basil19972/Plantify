@@ -1,0 +1,21 @@
+{
+    "projectId": "6476e97c4b6b1579fdc3",
+    "projectName": "",
+    "functions": [
+        {
+            "$id": "647b0c3e6b185bb52427",
+            "name": "EmailNotification",
+            "runtime": "node-16.0",
+            "path": "functions/EmailNotification",
+            "entrypoint": "src/index.js",
+            "ignore": [
+                "node_modules",
+                ".npm"
+            ],
+            "execute": [],
+            "events": [],
+            "schedule": "",
+            "timeout": 15
+        }
+    ]
+}
