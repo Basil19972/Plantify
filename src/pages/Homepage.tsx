@@ -11,7 +11,10 @@ function Hompage() {
   const [user, setuser] = useState<UserValues>();
 
   async function getPlantsList() {
-    plantService.getPlants().then((res) => setplants(res.documents));
+    await plantService
+      .getPlants()
+      .then((res) => setplants(res.documents))
+      .catch((err) => console.log(err));
   }
 
   useEffect(() => {

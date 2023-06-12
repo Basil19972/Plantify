@@ -35,7 +35,7 @@ function TableBO({ plants }: { plants: PlantValues[] }) {
     .slice(0)
     .reverse()
     .map((plant) => (
-      <tr style={{ wordWrap: "break-word" }}>
+      <tr key={plant.$id} style={{ wordWrap: "break-word" }}>
         <td>{plant.watered ? <img src="images/droplet.svg"></img> : ""}</td>
         <td>{plant.fertilized ? <img src="images/bolt.svg"></img> : ""}</td>
 

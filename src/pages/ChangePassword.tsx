@@ -2,28 +2,14 @@ import {
   Burger,
   Button,
   Card,
-  CheckboxProps,
   Container,
   Divider,
   Group,
   Text,
   TextInput,
 } from "@mantine/core";
-import {
-  IconDroplet,
-  IconBolt,
-  IconInfoCircle,
-  IconCheck,
-  IconCircleCheck,
-  IconLock,
-} from "@tabler/icons";
-import {
-  ChangeEvent,
-  FormEvent,
-  SetStateAction,
-  useEffect,
-  useState,
-} from "react";
+import { IconLock } from "@tabler/icons";
+import { ChangeEvent, FormEvent, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import userService from "../services/user.service";
 import feedBackModals from "../components/modals/FeedBackModals";

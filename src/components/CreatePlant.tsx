@@ -13,9 +13,9 @@ import {
   Text,
   TextInput,
 } from "@mantine/core";
-import { IconDroplet, IconBolt, IconAlertCircle } from "@tabler/icons";
+import { IconBolt, IconAlertCircle } from "@tabler/icons";
 import { useState } from "react";
-import { openConfirmModal, openModal } from "@mantine/modals";
+import { openConfirmModal } from "@mantine/modals";
 import { useNavigate } from "react-router-dom";
 import feedBackModals from "../components/modals/FeedBackModals";
 import plantService from "../services/plant.service";
@@ -38,9 +38,6 @@ function CreatePlant({
     <IconBolt className={className} color={"yellow"} />
   );
 
-  const CheckboxIcon: CheckboxProps["icon"] = ({ className }) => (
-    <IconDroplet className={className} color={"blue"} />
-  );
   const navigate = useNavigate();
 
   const plantOB = {
@@ -81,7 +78,7 @@ function CreatePlant({
         mb={20}
         variant="outline"
         icon={<IconAlertCircle size="1rem" />}
-        title="Email not verified"
+        title="Email not verified, check your inbox for verification link"
         color="red"
         bg={"#222222"}
       >
@@ -91,7 +88,7 @@ function CreatePlant({
           size="sm"
           variant="outline"
         >
-          Send Link
+          Send Link again
         </Button>
       </Alert>
     );
@@ -119,12 +116,14 @@ function CreatePlant({
     });
 
   const sendCreatedPlant = () => {
-    if (!message.match(/^.{0,30}$/)) {
+    const regex = /^.{0,30}$/.exec(message);
+    if (!regex) {
       feedBackModals.ErrorModal({
         title: "Error",
         message: "The message may only contain 0-30 characters.",
       });
     }
+
     setwatered(true);
 
     plantService
@@ -151,7 +150,6 @@ function CreatePlant({
       <Card withBorder bg={"#222222"} p={20} c={"white"} radius={20}>
         <Group position="apart">
           <img src="images/logo.svg"></img>
-
           <Burger
             color="white"
             opened={opened}
@@ -179,20 +177,23 @@ function CreatePlant({
               pr={10}
               mb={5}
             ></TextInput>
-            <Checkbox
-              checked={fertilized}
-              icon={CheckboxIcon1}
-              indeterminate
-              size="xl"
-              styles={(theme) => ({
-                input: {
-                  backgroundColor: "#222222",
-                  borderColor: "white",
-                },
-              })}
-              onChange={handleChangeFertilized}
-              radius={7}
-            />
+            <div className="checkbox-container">
+              <Checkbox
+                checked={fertilized}
+                icon={CheckboxIcon1}
+                indeterminate
+                size="xl"
+                styles={(theme) => ({
+                  input: {
+                    backgroundColor: "#222222",
+                    borderColor: "white",
+                    zIndex: 1,
+                  },
+                })}
+                onChange={handleChangeFertilized}
+                radius={7}
+              />
+            </div>
           </Center>
         </Box>
 

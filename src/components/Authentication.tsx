@@ -86,9 +86,15 @@ function AuthenticationForm() {
                         email: form.values.email,
                         password: form.values.password,
                       })
-                      .then(() => {
-                        userService.startEmailVerification().then(() => {
+                      .then(async () => {
+                        await userService.startEmailVerification().then(() => {
                           window.location.reload();
+                        });
+                      })
+                      .catch((error) => {
+                        feedBackModals.ErrorModal({
+                          title: "Error",
+                          message: error.message,
                         });
                       });
                   })
@@ -101,10 +107,6 @@ function AuthenticationForm() {
               },
             });
           } else {
-            const loginForm = {
-              email: form.values.email,
-              password: form.values.password,
-            };
             userService
               .loginUser({
                 email: form.values.email,
