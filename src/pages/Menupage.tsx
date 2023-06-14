@@ -1,8 +1,6 @@
 import {
   ActionIcon,
-  Box,
   Burger,
-  Button,
   Card,
   Checkbox,
   Container,
@@ -11,8 +9,6 @@ import {
 } from "@mantine/core";
 import { openConfirmModal } from "@mantine/modals";
 import {
-  IconSquareRounded,
-  IconCircleCheck,
   IconLogout,
   IconMail,
   IconTrash,
@@ -33,10 +29,16 @@ function Menupage() {
   const [user, setuser] = useState<UserValues>();
 
   useEffect(() => {
-    userService.getCurrentUser().then((res) => {
-      setuser(res);
-      setChecked(res.prefs.emailNotification);
-    });
+    // Fetch the current user and update the email notification preference
+    userService
+      .getCurrentUser()
+      .then((res) => {
+        setuser(res);
+        setChecked(res.prefs.emailNotification);
+      })
+      .catch((err) => {
+        console.log(err.message);
+      });
   }, []);
 
   const openConfirmation = () =>
@@ -50,12 +52,18 @@ function Menupage() {
       labels: { confirm: "Confirm", cancel: "Cancel" },
       onCancel: () => console.log("Cancel"),
       onConfirm: () => {
-        userService.updateEmailNotification(!checked).then(() => {
-          feedBackModals.SuccessModal({
-            title: "Success",
-            message: "You have successfully changed the email notification",
+        // Toggle the email notification preference and update the user's settings
+        userService
+          .updateEmailNotification(!checked)
+          .then(() => {
+            feedBackModals.SuccessModal({
+              title: "Success",
+              message: "You have successfully changed the email notification",
+            });
+          })
+          .catch((err) => {
+            feedBackModals.ErrorModal({ title: "Error", message: err.message });
           });
-        });
         setChecked(!checked);
       },
     });
@@ -63,8 +71,10 @@ function Menupage() {
   return (
     <Card withBorder bg={"#222222"} p={20} c={"white"} radius={20}>
       <Group position="apart">
+        {/* Logo */}
         <img src="images/logo.svg"></img>
 
+        {/* Burger menu button */}
         <Burger
           color="white"
           opened={opened}
@@ -74,23 +84,31 @@ function Menupage() {
           }}
         ></Burger>
       </Group>
+
       <Container mt={30}></Container>
+
       <Container mt={30}>
         <Group position="left">
+          {/* User icon */}
           <IconUser color="white" size={20} />
+          {/* User name */}
           <Text>{user?.name}</Text>
         </Group>
       </Container>
 
       <Container mt={10}>
         <Group position="left">
+          {/* Mail icon */}
           <IconMail color="white" size={20} />
+          {/* User email */}
           <Text>{user?.email}</Text>
         </Group>
       </Container>
+
       <Container mt={15}>
         <Group position="left">
           <ActionIcon color="yellow" variant="outline" size={30}>
+            {/* Lock icon */}
             <IconLock
               size={18}
               onClick={() => {
@@ -104,6 +122,7 @@ function Menupage() {
 
       <Container mt={30}>
         <Group position="left">
+          {/* Checkbox for email notification */}
           <Checkbox
             checked={checked}
             onClick={() => {
@@ -115,6 +134,7 @@ function Menupage() {
           <Text>Email Notification</Text>
         </Group>
       </Container>
+
       <Container mt={15}>
         <Group position="left">
           <ActionIcon
@@ -125,6 +145,7 @@ function Menupage() {
               navigate("/delete");
             }}
           >
+            {/* Trash icon */}
             <IconTrash size={18} />
           </ActionIcon>
           <Text>Delete Waterings</Text>
@@ -134,12 +155,22 @@ function Menupage() {
       <Container mt={15}>
         <Group position="left">
           <ActionIcon color="red" variant="outline" size={30}>
+            {/* Logout icon */}
             <IconLogout
               size={18}
               onClick={() => {
-                userService.logoutUser().then(() => {
-                  window.location.reload();
-                });
+                // Logout the user and refresh the page
+                userService
+                  .logoutUser()
+                  .then(() => {
+                    window.location.reload();
+                  })
+                  .catch((err) => {
+                    feedBackModals.ErrorModal({
+                      title: "Error",
+                      message: err.message,
+                    });
+                  });
               }}
             />
           </ActionIcon>
@@ -149,4 +180,5 @@ function Menupage() {
     </Card>
   );
 }
+
 export default Menupage;

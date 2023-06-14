@@ -1,5 +1,4 @@
-
-/* Stile für Desktops und größere Bildschirme */
+/* Styles for desktops and larger screens */
 #root {
   min-width: 30vw;
   margin: 0 auto;
@@ -8,59 +7,26 @@
   color: white;
 }
 
-/* Stile für Tablets und kleinere Bildschirme */
+/* Styles for tablets and smaller screens */
 @media (max-width: 1024px) {
   #root {
-    /* Tablet-spezifische Stile hier */
-      min-width: 70%;
-      margin: 0 auto;
-        padding: 1rem;
-        text-align: center;
-        color: white;
+    /* Tablet-specific styles here */
+    min-width: 70%;
+    margin: 0 auto;
+    padding: 1rem;
+    text-align: center;
+    color: white;
   }
 }
 
-/* Stile für Smartphones und kleinere Bildschirme */
+/* Styles for smartphones and smaller screens */
 @media (max-width: 600px) {
   #root {
-    /* Smartphone-spezifische Stile hier */
-      min-width: 90%;
-      margin: 0 auto;
-        padding: 1rem;
-        text-align: center;
-        color: white;
+    /* Smartphone-specific styles here */
+    min-width: 90%;
+    margin: 0 auto;
+    padding: 1rem;
+    text-align: center;
+    color: white;
   }
 }
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
-}
-
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
-}
-
-
-.card {
-  padding: 2em;
-}
-
-

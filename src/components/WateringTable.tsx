@@ -1,10 +1,12 @@
+// Importing required dependencies and components
 import { ActionIcon, Card, Container, Group, Table, Text } from "@mantine/core";
 import { IconInfoCircle } from "@tabler/icons";
 import { PlantValues } from "../types/Plant.type";
 import moment from "moment";
 import { openModal } from "@mantine/modals";
 
-function TableBO({ plants }: { plants: PlantValues[] }) {
+function WateringTable({ plants }: { plants: PlantValues[] }) {
+  // Function to open the explanation modal
   const openExplanationModal = () =>
     openModal({
       styles: {
@@ -31,6 +33,7 @@ function TableBO({ plants }: { plants: PlantValues[] }) {
       ),
     });
 
+  // Creating table rows based on the plant data
   const rows = plants
     .slice(0)
     .reverse()
@@ -52,6 +55,7 @@ function TableBO({ plants }: { plants: PlantValues[] }) {
           <Group position="center">
             <Text size="xl">Your waterings</Text>
 
+            {/* Button to open the explanation modal */}
             <ActionIcon
               size={20}
               color="green"
@@ -73,4 +77,4 @@ function TableBO({ plants }: { plants: PlantValues[] }) {
   );
 }
 
-export default TableBO;
+export default WateringTable;

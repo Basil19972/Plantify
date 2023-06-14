@@ -1,3 +1,4 @@
+// Importing required dependencies and components
 import { ActionIcon, Burger, Card, Group, Table, Text } from "@mantine/core";
 import { openConfirmModal } from "@mantine/modals";
 import { IconTrash } from "@tabler/icons";
@@ -8,15 +9,23 @@ import feedBackModals from "../components/modals/FeedBackModals";
 import plantService from "../services/plant.service";
 import moment from "moment";
 
-function TableBO() {
+function TableDelete() {
+  // Setting up state variables
   const [plants, setplants] = useState<PlantValues[]>([]);
   const [opened, setOpened] = useState(true);
   const navigate = useNavigate();
 
+  // Fetching plants data from the server on component mount
   useEffect(() => {
-    plantService.getPlants().then((res) => setplants(res.documents));
+    plantService
+      .getPlants()
+      .then((res) => setplants(res.documents))
+      .catch((err) => {
+        console.log(err.message);
+      });
   }, []);
 
+  // Function to handle the confirmation modal for deleting a watering
   const openConfirmDelete = (id: string) =>
     openConfirmModal({
       styles: {
@@ -36,23 +45,28 @@ function TableBO() {
       labels: { confirm: "Delete", cancel: "Cancel" },
       onCancel: () => console.log("Cancel"),
       onConfirm: () => {
-        plantService.deletePlantById(id).then((res) => {
-          feedBackModals.SuccessModal({
-            title: "Success",
-            message: "Your watering is successfully deleted",
+        plantService
+          .deleteWateringById(id)
+          .then((res) => {
+            feedBackModals.SuccessModal({
+              title: "Success",
+              message: "Your watering is successfully deleted",
+            });
+            setplants(plants.filter((plant) => plant.$id !== id));
+          })
+          .catch((err) => {
+            feedBackModals.ErrorModal({ title: "Error", message: err.message });
           });
-          setplants(plants.filter((plant) => plant.$id !== id));
-        });
       },
     });
 
+  // Generating table rows based on the plants data
   const rows = plants
     .slice(0)
     .reverse()
     .map((plant) => (
-      <tr style={{ wordWrap: "break-word" }}>
+      <tr key={plant.$id} style={{ wordWrap: "break-word" }}>
         <td>{moment(plant.$createdAt).format("MMM Do YY")}</td>
-
         <td style={{ maxWidth: 60 }}>{plant.message}</td>
         <td>
           <ActionIcon
@@ -66,12 +80,12 @@ function TableBO() {
       </tr>
     ));
 
+  // Rendering the component
   return (
     <>
       <Card withBorder bg={"#222222"} p={20} c={"white"} radius={20}>
         <Group position="apart">
           <img src="images/logo.svg"></img>
-
           <Burger
             color="white"
             opened={opened}
@@ -92,4 +106,4 @@ function TableBO() {
   );
 }
 
-export default TableBO;
+export default TableDelete;

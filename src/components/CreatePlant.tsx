@@ -1,3 +1,4 @@
+// Importing required dependencies and components
 import {
   Alert,
   Box,
@@ -29,11 +30,13 @@ function CreatePlant({
   currentUser: UserValues;
   getPlants: () => void;
 }) {
+  // Setting up state variables
   const [watered, setwatered] = useState(true);
   const [fertilized, setfertilized] = useState<boolean>(false);
   const [message, setmessage] = useState("");
   const [opened, setOpened] = useState(false);
 
+  // Custom checkbox icon
   const CheckboxIcon1: CheckboxProps["icon"] = ({ className }) => (
     <IconBolt className={className} color={"yellow"} />
   );
@@ -73,6 +76,7 @@ function CreatePlant({
   };
 
   const openEmailNotVerifiedAlert = () => {
+    // Display an alert if email is not verified
     return (
       <Alert
         mb={20}
@@ -118,6 +122,7 @@ function CreatePlant({
   const sendCreatedPlant = () => {
     const regex = /^.{0,30}$/.exec(message);
     if (!regex) {
+      // Show an error modal if the message exceeds the character limit
       feedBackModals.ErrorModal({
         title: "Error",
         message: "The message may only contain 0-30 characters.",
@@ -127,7 +132,7 @@ function CreatePlant({
     setwatered(true);
 
     plantService
-      .createPlant(plantOB)
+      .createWatering(plantOB)
       .then(() => {
         feedBackModals.SuccessModal({
           title: "Success",
@@ -212,4 +217,5 @@ function CreatePlant({
     </>
   );
 }
+
 export default CreatePlant;

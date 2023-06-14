@@ -1,3 +1,4 @@
+// Importing required dependencies and styles
 import "./App.css";
 import { useEffect, useState } from "react";
 import { Route, Routes, useLocation, useNavigate } from "react-router-dom";
@@ -13,14 +14,16 @@ import ForgetPasswort from "./pages/ForgetPassword";
 import ResetPassword from "./pages/ResetPassword";
 
 function App() {
+  // State for loading state
   const [loading, setIsloading] = useState(true);
   let isLoggedIn: boolean;
   const navigate = useNavigate();
 
+  // Access the current location
   const location = useLocation();
 
   useEffect(() => {
-    // Do not run the redirection if the path is "/verifySuccess"
+    // Do not run the redirection if the path is "/verifySuccess" or "/resetPassword"
     if (
       location.pathname === "/verifySuccess" ||
       location.pathname === "/resetPassword"
@@ -44,6 +47,7 @@ function App() {
       });
   }, []);
 
+  // Navigate to the appropriate page based on login status
   const navlogin = () => {
     if (!isLoggedIn) {
       navigate("/landingpage");
@@ -51,11 +55,14 @@ function App() {
       navigate("/");
     }
   };
+
+  // Render the loading spinner if still loading
   if (loading) return <Loader color="lime" size="xl" variant="bars" mt={400} />;
 
   return (
     <>
       <Routes>
+        {/* Define routes for different pages */}
         <Route path="/" element={<Hompage />} />
         <Route path="landingpage" element={<LandingPage />} />
         <Route path="menu" element={<Menupage />} />
@@ -68,4 +75,5 @@ function App() {
     </>
   );
 }
+
 export default App;

@@ -1,11 +1,4 @@
-import {
-  createStyles,
-  SimpleGrid,
-  Text,
-  ThemeIcon,
-  Center,
-  Divider,
-} from "@mantine/core";
+import { SimpleGrid, Text, ThemeIcon, Center, Divider } from "@mantine/core";
 import {
   IconCirclePlus,
   IconBolt,
@@ -14,19 +7,7 @@ import {
 } from "@tabler/icons";
 import Authentication from "../components/Authentication";
 
-const useStyles = createStyles((theme) => ({
-  wrapper: { padding: 30, width: 400 },
-
-  title: {
-    fontFamily: `Greycliff CF, ${theme.fontFamily}`,
-    fontSize: 36,
-    fontWeight: 900,
-    lineHeight: 1.1,
-    marginBottom: theme.spacing.md,
-    color: theme.colorScheme === "light" ? theme.white : theme.black,
-  },
-}));
-
+// Define an array of features with their icons, titles, and descriptions
 const features = [
   {
     icon: IconCirclePlus,
@@ -53,8 +34,7 @@ const features = [
 ];
 
 function LandingPage() {
-  const { classes } = useStyles();
-
+  // Generate JSX elements for each feature item
   const items = features.map((feature) => (
     <div key={feature.title}>
       <ThemeIcon
@@ -79,11 +59,18 @@ function LandingPage() {
 
   return (
     <>
+      {/* Authentication component */}
       <Authentication />
+
+      {/* Title */}
       <Text mt={40} size={"xl"}>
         Features{" "}
       </Text>
+
+      {/* Divider */}
       <Divider></Divider>
+
+      {/* SimpleGrid to display the feature items */}
       <SimpleGrid
         mt={20}
         cols={1}
@@ -95,4 +82,5 @@ function LandingPage() {
     </>
   );
 }
+
 export default LandingPage;

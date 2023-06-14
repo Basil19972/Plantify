@@ -2,28 +2,14 @@ import {
   Burger,
   Button,
   Card,
-  CheckboxProps,
   Container,
   Divider,
   Group,
   Text,
   TextInput,
 } from "@mantine/core";
-import {
-  IconDroplet,
-  IconBolt,
-  IconInfoCircle,
-  IconCheck,
-  IconCircleCheck,
-  IconLock,
-} from "@tabler/icons";
-import {
-  ChangeEvent,
-  FormEvent,
-  SetStateAction,
-  useEffect,
-  useState,
-} from "react";
+import { IconLock } from "@tabler/icons";
+import { ChangeEvent, FormEvent, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import userService from "../services/user.service";
 import feedBackModals from "../components/modals/FeedBackModals";
@@ -79,8 +65,10 @@ function ResetPassword() {
       <form onSubmit={handleSubmit}>
         <Card withBorder bg={"#222222"} p={20} c={"white"} radius={20}>
           <Group position="apart">
+            {/* Logo */}
             <img src="images/logo.svg"></img>
 
+            {/* Burger menu button */}
             <Burger
               color="white"
               opened={true}
@@ -91,13 +79,17 @@ function ResetPassword() {
           </Group>
 
           <Container mt={30} mb={20}>
+            {/* Lock icon */}
             <IconLock color="yellow" size={40} />
 
+            {/* Text */}
             <Text size="xl">Set your Password</Text>
           </Container>
 
+          {/* Divider */}
           <Divider mb={20}></Divider>
 
+          {/* New Password input */}
           <TextInput
             type="password"
             placeholder="New Password"
@@ -105,6 +97,8 @@ function ResetPassword() {
             pr={10}
             mb={10}
           ></TextInput>
+
+          {/* Confirm New Password input */}
           <TextInput
             type="password"
             placeholder="Confirm new Password"
@@ -112,6 +106,8 @@ function ResetPassword() {
             pr={10}
             mb={5}
           ></TextInput>
+
+          {/* Submit button */}
           <Button
             mt={10}
             color="green"
@@ -126,4 +122,5 @@ function ResetPassword() {
     </>
   );
 }
+
 export default ResetPassword;

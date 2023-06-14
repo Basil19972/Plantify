@@ -1,3 +1,4 @@
+// Importing required dependencies and components
 import { useToggle, upperFirst } from "@mantine/hooks";
 import { useForm } from "@mantine/form";
 import {
@@ -16,8 +17,8 @@ import userService from "../services/user.service";
 import { useNavigate } from "react-router-dom";
 
 function AuthenticationForm() {
+  // Setting up state and hooks
   const navigate = useNavigate();
-
   const [type, toggle] = useToggle(["login", "register"]);
   const form = useForm({
     initialValues: {
@@ -31,7 +32,7 @@ function AuthenticationForm() {
       password: (val) =>
         val.length < 8 ? "Password should include at least 8 characters" : null,
       username: (val) =>
-        val.length > 12 ? "Username should incloud max 12 characters" : null,
+        val.length > 12 ? "Username should include max 12 characters" : null,
     },
   });
 
@@ -48,6 +49,7 @@ function AuthenticationForm() {
       <form
         onSubmit={form.onSubmit(() => {
           if (type === "register") {
+            // Handling registration process
             openConfirmModal({
               styles: {
                 modal: {
@@ -62,7 +64,6 @@ function AuthenticationForm() {
               transition: "fade",
               transitionDuration: 600,
               title: "Please check your details",
-
               children: (
                 <Text size="sm">
                   Would you like to create your account with {form.values.email}
@@ -72,6 +73,7 @@ function AuthenticationForm() {
               labels: { confirm: "Confirm", cancel: "Cancel" },
               onCancel: () => console.log("Cancel"),
               onConfirm: () => {
+                // Creating the user and starting email verification
                 userService
                   .createUser({
                     username: form.values.username,
@@ -105,6 +107,7 @@ function AuthenticationForm() {
               },
             });
           } else {
+            // Handling login process
             userService
               .loginUser({
                 email: form.values.email,
@@ -134,7 +137,7 @@ function AuthenticationForm() {
               }
               error={
                 form.errors.username &&
-                "Username should incloud max 12 characters"
+                "Username should include max 12 characters"
               }
             />
           )}
@@ -192,4 +195,5 @@ function AuthenticationForm() {
     </Paper>
   );
 }
+
 export default AuthenticationForm;
